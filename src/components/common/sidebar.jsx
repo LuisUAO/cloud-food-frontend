@@ -40,9 +40,9 @@ export function Sidebar() {
                     <a>
                         <span class="icon-text">
                             <span class="icon">
-                                <i class="fas fa-message"></i>
+                                <i class="fas fa-bell"></i>
                             </span>
-                            <span>Mensajes</span>
+                            <span>Notificaciones</span>
                         </span>
                     </a>
                 </li>
