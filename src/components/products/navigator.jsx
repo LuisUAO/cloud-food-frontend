@@ -6,22 +6,53 @@ export function ProductsNavigator() {
 
             <div class="level-left">
                 <div class="level-item">
-                    <nav class="breadcrumb" aria-label="breadcrumbs">
-                        <ul>
-                            <li>
-                                <a href="#">
+                    <div class="dropdown is-hoverable">
+                        <div class="dropdown-trigger">
+                            <button class="button is-success" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                <span>Categorias</span>
+                                <span class="icon is-small">
+                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                            <div class="dropdown-content">
+                                <a href="#" class="dropdown-item is-active">
                                     <span class="icon-text">
                                         <span class="icon">
-                                            <i class="fas fa-utensils"></i>
+                                            <i class="fas fa-star"></i>
                                         </span>
-                                        <span>Restaurantes</span>
+                                        <span>Populares</span>
                                     </span>
                                 </a>
-                            </li>
-                            <li><a href="#">Burger Stack</a></li>
-                            <li class="is-active"><a href="#" aria-current="page">Hamburgesas</a></li>
-                        </ul>
-                    </nav>
+                                <a href="#" class="dropdown-item">
+                                    <span class="icon-text">
+                                        <span class="icon">
+                                            <i class="fas fa-percent"></i>
+                                        </span>
+                                        <span>Descuentos</span>
+                                    </span>
+                                </a>
+                                <hr class="dropdown-divider" />
+                                <a href="#" class="dropdown-item">
+                                    Hamburgesas
+                                </a>
+                                <a class="dropdown-item">
+                                    Sandwiches
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    Almuerzos
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    Desayunos
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="level-item">
+                    <h1 class="subtitle">Burger Stack</h1>
                 </div>
             </div>
 

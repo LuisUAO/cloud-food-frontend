@@ -9,7 +9,7 @@ export function RestaurantsNavigator() {
                     <div class="dropdown is-hoverable">
                         <div class="dropdown-trigger">
                             <button class="button is-info" aria-haspopup="true" aria-controls="dropdown-menu4">
-                                <span>Caregorias</span>
+                                <span>Categorias</span>
                                 <span class="icon is-small">
                                     <i class="fas fa-angle-down" aria-hidden="true"></i>
                                 </span>
