@@ -9,6 +9,7 @@ import { NotificationsPage } from './pages/notifications';
 import { ConfigPage } from './pages/config';
 import { HelpPage } from './pages/help';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { LoginForm } from './components/common/login';
 
 function App() {
     return (
@@ -27,6 +28,8 @@ function App() {
                     </Routes>
                 </Layout>
             </BrowserRouter>
+
+            <LoginForm />
         </div>
     );
 }
