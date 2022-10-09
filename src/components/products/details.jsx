@@ -2,9 +2,9 @@ import React from 'react';
 import { ProductsDetailOption } from './details/option';
 import { Product } from './product';
 
-export function ProductsDetail() {
+export function ProductsDetail({visible, onAccept, onClose}) {
     return (
-        <div class="modal" id="products-detail">
+        <div class={`modal ${visible ? "is-active" : ""}`} id="products-detail">
             <div class="modal-background"></div>
             <div class="modal-card" style={{width: '75%'}}>
 
@@ -26,7 +26,7 @@ export function ProductsDetail() {
                 </section>
 
                 <footer class="modal-card-foot">
-                    <button class="button is-success">
+                    <button class="button is-success" onClick={onAccept}>
                         <span class="icon-text">
                             <span class="icon">
                                 <i class="fas fa-cart-shopping"></i>
@@ -34,7 +34,7 @@ export function ProductsDetail() {
                             <span>Agregar al Carrito</span>
                         </span>
                     </button>
-                    <button class="button">
+                    <button class="button" onClick={onClose}>
                         <span class="icon-text">
                             <span class="icon">
                                 <i class="fas fa-xmark"></i>
