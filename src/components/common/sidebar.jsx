@@ -1,6 +1,16 @@
 import React from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 
 export function Sidebar() {
+    const { pathname } = useLocation();
+
+    const activeCB = (data) => 
+        data.isActive ? "is-active" : false;
+    const activeRestaurantCB = (data) => {
+        let check = ['/', '/restaurant'].includes(pathname);
+        return check ? "is-active" : false;
+    }
+
     return (
         <aside class="menu is-hidden-mobile">
 
@@ -10,24 +20,24 @@ export function Sidebar() {
 
             <ul class="menu-list">
                 <li>
-                    <a class="is-active">
+                    <NavLink to="/" className={activeRestaurantCB} end>
                         <span class="icon-text">
                             <span class="icon">
                                 <i class="fas fa-utensils"></i>
                             </span>
                             <span>Restaurantes</span>
                         </span>
-                    </a>
+                    </NavLink>
                 </li>
                 <li>
-                    <a>
+                    <NavLink to="/cart" className={activeCB}>
                         <span class="icon-text">
                             <span class="icon">
                                 <i class="fas fa-cart-shopping"></i>
                             </span>
                             <span>Carrito</span>
                         </span>
-                    </a>
+                    </NavLink>
                 </li>
             </ul>
 
@@ -37,34 +47,34 @@ export function Sidebar() {
 
             <ul class="menu-list">
                 <li>
-                    <a>
+                    <NavLink to="/notifications" className={activeCB}>
                         <span class="icon-text">
                             <span class="icon">
                                 <i class="fas fa-bell"></i>
                             </span>
                             <span>Notificaciones</span>
                         </span>
-                    </a>
+                    </NavLink>
                 </li>
                 <li>
-                    <a>
+                    <NavLink to="/tickets" className={activeCB}>
                         <span class="icon-text">
                             <span class="icon">
                                 <i class="fas fa-money-bill"></i>
                             </span>
                             <span>Facturas</span>
                         </span>
-                    </a>
+                    </NavLink>
                 </li>
                 <li>
-                    <a>
+                    <NavLink to="/help" className={activeCB}>
                         <span class="icon-text">
                             <span class="icon">
                                 <i class="fas fa-circle-info"></i>
                             </span>
                             <span>Ayuda</span>
                         </span>
-                    </a>
+                    </NavLink>
                 </li>
             </ul>
 
@@ -74,34 +84,34 @@ export function Sidebar() {
 
             <ul class="menu-list">
                 <li>
-                    <a>
+                    <NavLink to="/location" className={activeCB}>
                         <span class="icon-text">
                             <span class="icon">
                                 <i class="fas fa-location-pin"></i>
                             </span>
                             <span>Ubicación</span>
                         </span>
-                    </a>
+                    </NavLink>
                 </li>
                 <li>
-                    <a>
+                    <NavLink to="/config" className={activeCB}>
                         <span class="icon-text">
                             <span class="icon">
                                 <i class="fas fa-user"></i>
                             </span>
                             <span>Configuración</span>
                         </span>
-                    </a>
+                    </NavLink>
                 </li>
                 <li>
-                    <a>
+                    <NavLink to="/exit" className={activeCB}>
                         <span class="icon-text">
                             <span class="icon">
                                 <i class="fas fa-right-from-bracket"></i>
                             </span>
                             <span>Salir</span>
                         </span>
-                    </a>
+                    </NavLink>
                 </li>
             </ul>
 

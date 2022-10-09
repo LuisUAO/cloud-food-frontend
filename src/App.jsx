@@ -8,13 +8,25 @@ import { TicketsPage } from './pages/tickets';
 import { NotificationsPage } from './pages/notifications';
 import { ConfigPage } from './pages/config';
 import { HelpPage } from './pages/help';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
     return (
         <div className="App">
-            <Layout>
-                <HelpPage />
-            </Layout>
+            <BrowserRouter>
+                <Layout>
+                    <Routes>
+                        <Route path="/" element={<RestaurantsPage/>}/>
+                        <Route path="/restaurant" element={<ProductsPage/>}/>
+                        <Route path="/location" element={<LocationPage/>}/>
+                        <Route path="/cart" element={<CartPage/>}/>
+                        <Route path="/tickets" element={<TicketsPage/>}/>
+                        <Route path="/notifications" element={<NotificationsPage/>}/>
+                        <Route path="/config" element={<ConfigPage/>}/>
+                        <Route path="/help" element={<HelpPage/>}/>
+                    </Routes>
+                </Layout>
+            </BrowserRouter>
         </div>
     );
 }
