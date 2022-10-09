@@ -2,7 +2,7 @@ import React from 'react';
 
 export function HelpForm() {
     return (
-        <form>
+        <form class="box">
             <div class="field">
                 <label class="label">Motivo</label>
                 <div class="control">

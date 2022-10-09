@@ -2,7 +2,7 @@ import React from 'react';
 
 export function ConfigForm() {
     return (
-        <form>
+        <form className="box">
             <div class="field">
                 <label class="label">Nombres</label>
                 <div class="field-body">
