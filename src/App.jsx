@@ -10,6 +10,7 @@ import { ConfigPage } from './pages/config';
 import { HelpPage } from './pages/help';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { LoginForm } from './components/common/login';
+import { RegisterForm } from './components/common/register';
 
 function App() {
     return (
@@ -30,6 +31,7 @@ function App() {
             </BrowserRouter>
 
             <LoginForm />
+            <RegisterForm />
         </div>
     );
 }
