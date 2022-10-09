@@ -11,12 +11,38 @@ import { HelpPage } from './pages/help';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { LoginForm } from './components/common/login';
 import { RegisterForm } from './components/common/register';
+import { useState } from 'react';
 
 function App() {
+    //TODO: LLEVAR EL LOGGED A UN REDUCER
+    let [logged, setLogged] = useState(false);
+    let [visibleLogin, setVisibleLogin] = useState(false);
+    let [visibleRegister, setVisibleRegister] = useState(false);
+    const onLogin = () => {
+        setLogged(true);
+        setVisibleLogin(false);
+        setVisibleRegister(false);
+    };
+
+    const showLogin = () => setVisibleLogin(true);
+    const showRegister = () => setVisibleRegister(true);
+
+    const onLoginCancel = () => {
+        setVisibleLogin(false);
+        setVisibleRegister(false);
+    };
+
+    const onLogout = () => setLogged(false);
+
     return (
         <div className="App">
             <BrowserRouter>
-                <Layout>
+                <Layout 
+                    logged={logged} 
+                    requestLogin={showLogin} 
+                    requestRegister={showRegister} 
+                    requestLogout={onLogout}
+                >
                     <Routes>
                         <Route path="/" element={<RestaurantsPage/>}/>
                         <Route path="/restaurant" element={<ProductsPage/>}/>
@@ -30,8 +56,8 @@ function App() {
                 </Layout>
             </BrowserRouter>
 
-            <LoginForm />
-            <RegisterForm />
+            <LoginForm visible={visibleLogin} onLogin={onLogin} onCancel={onLoginCancel}/>
+            <RegisterForm visible={visibleRegister} onRegister={onLogin} onCancel={onLoginCancel}/>
         </div>
     );
 }

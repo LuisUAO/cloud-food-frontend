@@ -1,8 +1,8 @@
 import React from 'react';
 
-export function LoginForm() {
+export function LoginForm({visible, onLogin, onCancel}) {
     return (
-        <div class="modal" id="login-form">
+        <div class={`modal ${visible ? "is-active" : ""}`} id="login-form">
             <div class="modal-background"></div>
             <div class="modal-card">
 
@@ -27,7 +27,7 @@ export function LoginForm() {
                 </section>
 
                 <footer class="modal-card-foot">
-                    <button class="button is-success">
+                    <button class="button is-success" onClick={onLogin}>
                         <span class="icon-text">
                             <span class="icon">
                                 <i class="fas fa-user"></i>
@@ -35,7 +35,7 @@ export function LoginForm() {
                             <span>Ingresar</span>
                         </span>
                     </button>
-                    <button class="button">
+                    <button class="button" onClick={onCancel}>
                         <span class="icon-text">
                             <span class="icon">
                                 <i class="fas fa-xmark"></i>
