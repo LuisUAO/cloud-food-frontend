@@ -4,6 +4,7 @@ import { Product } from '../components/products/product';
 import { ProductsNavigator } from '../components/products/navigator';
 import { ProductsDetail } from '../components/products/details';
 import { useState } from 'react';
+import { ProductsEditor } from '../components/products/seller/editor';
 
 export function ProductsPage() {
     let [active, setActive] = useState(false);
@@ -21,8 +22,8 @@ export function ProductsPage() {
                     <Product onClick={onProductFake}/>
                 </Grid>
             </div>
-
-            <ProductsDetail visible={active} onAccept={onModalFake} onClose={onModalFake}/>
+            <ProductsEditor visible={active} onClose={onModalFake}></ProductsEditor>
+            <ProductsDetail visible={false} onAccept={onModalFake} onClose={onModalFake}/>
         </>
     );
 }

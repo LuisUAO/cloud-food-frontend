@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
-export function Sidebar({ logged, requestLogin, requestRegister, requestLogout }) {
+export function Sidebar({ logged, requestLogin, requestRegister, requestRegisterRestaurant, requestLogout }) {
     const { pathname } = useLocation();
 
     const activeCB = (data) =>
@@ -53,7 +53,7 @@ export function Sidebar({ logged, requestLogin, requestRegister, requestLogout }
                                 <span class="icon">
                                     <i class="fas fa-bell"></i>
                                 </span>
-                                <span>Notificaciones</span>
+                                <span>Pedidos</span>
                             </span>
                         </NavLink>
                     </li>
@@ -141,7 +141,20 @@ export function Sidebar({ logged, requestLogin, requestRegister, requestLogout }
                                     <span class="icon">
                                         <i class="fas fa-user"></i>
                                     </span>
-                                    <span>Registrarse</span>
+                                    <span>Registrarse Cliente</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="menu-list">
+                        <li>
+                            <a onClick={requestRegisterRestaurant}>
+                                <span class="icon-text">
+                                    <span class="icon">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                    <span>Registrarse Restaurante</span>
                                 </span>
                             </a>
                         </li>

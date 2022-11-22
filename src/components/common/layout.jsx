@@ -12,6 +12,7 @@ export function Layout(props) {
                         requestLogin={props.requestLogin}
                         requestRegister={props.requestRegister}
                         requestLogout={props.requestLogout}
+                        requestRegisterRestaurant={props.requestRegisterRestaurant}
                     />
                 </div>
 

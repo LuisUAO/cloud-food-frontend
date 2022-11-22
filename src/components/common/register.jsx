@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function RegisterForm({visible, onRegister, onCancel}) {
+export function RegisterForm({ visible, restaurant, onRegister, onCancel }) {
     return (
         <div class={`modal ${visible ? "is-active" : ""}`} id="login-form">
             <div class="modal-background"></div>
@@ -62,6 +62,36 @@ export function RegisterForm({visible, onRegister, onCancel}) {
                         </div>
                         <p class="help">Ingrese su fecha de nacimiento</p>
                     </div>
+
+                    {
+                        restaurant ?
+                            <div class="box">
+                                <div class="field">
+                                    <label class="label">Nombre Restaurante</label>
+                                    <div class="control">
+                                        <input class="input" type="text" placeholder="Celular" />
+                                    </div>
+                                    <p class="help">Ingrese el nombre de su restaurante</p>
+                                </div>
+
+                                <div class="field">
+                                    <label class="label">Imagen Restaurante</label>
+                                    <div class="control">
+                                        <input class="input" type="file" placeholder="Imagen" />
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="label">Logo Restaurante</label>
+                                    <div class="control">
+                                        <input class="input" type="file" placeholder="Logo" />
+                                    </div>
+                                </div>
+                            </div>
+                            :
+                            <>
+                            </>
+                    }
 
                 </section>
 

@@ -5,7 +5,7 @@ import { LocationPage } from './pages/location';
 import { ProductsPage } from './pages/products';
 import { RestaurantsPage } from './pages/restaurants';
 import { TicketsPage } from './pages/tickets';
-import { NotificationsPage } from './pages/notifications';
+import { NotificationsChatPage, NotificationsPage } from './pages/notifications';
 import { ConfigPage } from './pages/config';
 import { HelpPage } from './pages/help';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -18,14 +18,25 @@ function App() {
     let [logged, setLogged] = useState(false);
     let [visibleLogin, setVisibleLogin] = useState(false);
     let [visibleRegister, setVisibleRegister] = useState(false);
+    let [restaurantRegister, setRestaurantRegister] = useState(false);
+
     const onLogin = () => {
         setLogged(true);
         setVisibleLogin(false);
         setVisibleRegister(false);
     };
 
-    const showLogin = () => setVisibleLogin(true);
-    const showRegister = () => setVisibleRegister(true);
+    const showLogin = () => 
+        setVisibleLogin(true);
+
+    const showRegister = () => {
+        setRestaurantRegister(false);
+        setVisibleRegister(true);
+    }
+    const showRegisterRestaurant = () => {
+        setRestaurantRegister(true);
+        setVisibleRegister(true);
+    }
 
     const onLoginCancel = () => {
         setVisibleLogin(false);
@@ -40,7 +51,8 @@ function App() {
                 <Layout 
                     logged={logged} 
                     requestLogin={showLogin} 
-                    requestRegister={showRegister} 
+                    requestRegister={showRegister}
+                    requestRegisterRestaurant={showRegisterRestaurant}
                     requestLogout={onLogout}
                 >
                     <Routes>
@@ -50,6 +62,7 @@ function App() {
                         <Route path="/cart" element={<CartPage/>}/>
                         <Route path="/tickets" element={<TicketsPage/>}/>
                         <Route path="/notifications" element={<NotificationsPage/>}/>
+                        <Route path="/notifications/:id" element={<NotificationsChatPage/>}/>
                         <Route path="/config" element={<ConfigPage/>}/>
                         <Route path="/help" element={<HelpPage/>}/>
                     </Routes>
@@ -57,7 +70,7 @@ function App() {
             </BrowserRouter>
 
             <LoginForm visible={visibleLogin} onLogin={onLogin} onCancel={onLoginCancel}/>
-            <RegisterForm visible={visibleRegister} onRegister={onLogin} onCancel={onLoginCancel}/>
+            <RegisterForm restaurant={restaurantRegister} visible={visibleRegister} onRegister={onLogin} onCancel={onLoginCancel}/>
         </div>
     );
 }
