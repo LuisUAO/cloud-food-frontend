@@ -1,6 +1,25 @@
 import React from 'react';
+import { useState } from 'react';
 
 export function RegisterForm({ visible, restaurant, onRegister, onCancel }) {
+    let [email, setEmail] = useState("");
+    let [password, setPassword] = useState("");
+    let [name, setName] = useState("");
+    let [second, setSecond] = useState("");
+    // Restaurante
+    let [restaurantName, setRestaurantName] = useState("");
+
+    const cbOnRegister = () => {
+        onRegister({
+            email, 
+            password, 
+            name: name + " " + second,
+            // Informacion del Restaurante
+            restaurant,
+            restaurantName
+        });
+    };
+
     return (
         <div class={`modal ${visible ? "is-active" : ""}`} id="login-form">
             <div class="modal-background"></div>
@@ -13,15 +32,15 @@ export function RegisterForm({ visible, restaurant, onRegister, onCancel }) {
 
                 <section class="modal-card-body">
                     <div class="field">
-                        <label class="label">Usuario</label>
+                        <label class="label">Correo Electronico</label>
                         <div class="control">
-                            <input class="input" type="text" placeholder="Ingrese su usuario" />
+                            <input class="input" type="email" placeholder="Ingrese su correo" value={email} onChange={(e) => setEmail(e.target.value)}/>
                         </div>
                     </div>
                     <div class="field">
                         <label class="label">Contraseña</label>
                         <div class="control">
-                            <input class="input" type="password" placeholder="Ingrese su contraseña" />
+                            <input class="input" type="password" placeholder="Ingrese su contraseña" value={password} onChange={(e) => setPassword(e.target.value)}/>
                         </div>
                     </div>
 
@@ -30,7 +49,7 @@ export function RegisterForm({ visible, restaurant, onRegister, onCancel }) {
                         <div class="field-body">
                             <div class="field">
                                 <p class="control is-expanded has-icons-left">
-                                    <input class="input" type="text" placeholder="Nombre" />
+                                    <input class="input" type="text" placeholder="Nombre" value={name} onChange={(e) => setName(e.target.value)}/>
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-user"></i>
                                     </span>
@@ -38,7 +57,7 @@ export function RegisterForm({ visible, restaurant, onRegister, onCancel }) {
                             </div>
                             <div class="field">
                                 <p class="control is-expanded has-icons-left">
-                                    <input class="input" type="email" placeholder="Apellido" />
+                                    <input class="input" type="email" placeholder="Apellido" value={second} onChange={(e) => setSecond(e.target.value)}/>
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-user"></i>
                                     </span>
@@ -69,7 +88,7 @@ export function RegisterForm({ visible, restaurant, onRegister, onCancel }) {
                                 <div class="field">
                                     <label class="label">Nombre Restaurante</label>
                                     <div class="control">
-                                        <input class="input" type="text" placeholder="Celular" />
+                                        <input class="input" type="text" placeholder="Celular" value={restaurantName} onChange={(e) => setRestaurantName(e.target.value)}/>
                                     </div>
                                     <p class="help">Ingrese el nombre de su restaurante</p>
                                 </div>
@@ -96,7 +115,7 @@ export function RegisterForm({ visible, restaurant, onRegister, onCancel }) {
                 </section>
 
                 <footer class="modal-card-foot">
-                    <button class="button is-success" onClick={onRegister}>
+                    <button class="button is-success" onClick={cbOnRegister}>
                         <span class="icon-text">
                             <span class="icon">
                                 <i class="fas fa-user"></i>

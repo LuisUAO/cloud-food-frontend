@@ -1,6 +1,14 @@
 import React from 'react';
+import { useState } from 'react';
 
 export function LoginForm({visible, onLogin, onCancel}) {
+    let [email, setEmail] = useState("");
+    let [password, setPassword] = useState("");
+
+    const cbChangeEmail = (e) => setEmail(e.target.value);
+    const cbChangePassword = (e) => setPassword(e.target.value);
+    const cbLogin = (e) => onLogin(email, password);
+
     return (
         <div class={`modal ${visible ? "is-active" : ""}`} id="login-form">
             <div class="modal-background"></div>
@@ -13,21 +21,21 @@ export function LoginForm({visible, onLogin, onCancel}) {
 
                 <section class="modal-card-body">
                     <div class="field">
-                        <label class="label">Usuario</label>
+                        <label class="label">Correo Electronico</label>
                         <div class="control">
-                            <input class="input" type="text" placeholder="Ingrese su usuario" />
+                            <input class="input" type="email" placeholder="Ingrese su correo" value={email} onChange={cbChangeEmail}/>
                         </div>
                     </div>
                     <div class="field">
                         <label class="label">Contraseña</label>
                         <div class="control">
-                            <input class="input" type="password" placeholder="Ingrese su contraseña" />
+                            <input class="input" type="password" placeholder="Ingrese su contraseña" value={password} onChange={cbChangePassword}/>
                         </div>
                     </div>
                 </section>
 
                 <footer class="modal-card-foot">
-                    <button class="button is-success" onClick={onLogin}>
+                    <button class="button is-success" onClick={cbLogin}>
                         <span class="icon-text">
                             <span class="icon">
                                 <i class="fas fa-user"></i>

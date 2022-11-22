@@ -5,27 +5,26 @@ import { LocationPage } from './pages/location';
 import { ProductsPage } from './pages/products';
 import { RestaurantsPage } from './pages/restaurants';
 import { TicketsPage } from './pages/tickets';
-import { NotificationsChatPage, NotificationsPage } from './pages/notifications';
+import { NotificationsPage } from './pages/notifications';
 import { ConfigPage } from './pages/config';
 import { HelpPage } from './pages/help';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { LoginForm } from './components/common/login';
 import { RegisterForm } from './components/common/register';
 import { useState } from 'react';
 import { ChatPage } from './pages/chat';
+import { useUser } from './hooks/user';
+import { createContext } from 'react';
+// Context del Usuario
+const UserContext = createContext();
 
 function App() {
-    //TODO: LLEVAR EL LOGGED A UN REDUCER
     let [logged, setLogged] = useState(false);
     let [visibleLogin, setVisibleLogin] = useState(false);
     let [visibleRegister, setVisibleRegister] = useState(false);
     let [restaurantRegister, setRestaurantRegister] = useState(false);
-
-    const onLogin = () => {
-        setLogged(true);
-        setVisibleLogin(false);
-        setVisibleRegister(false);
-    };
+    // Estado Del Usuario
+    let [user, userLogin, userLogout, userRegister] = useUser();
 
     const showLogin = () => 
         setVisibleLogin(true);
@@ -39,12 +38,40 @@ function App() {
         setVisibleRegister(true);
     }
 
+    const onLogin = (email, password) => {
+        userLogin(email, password);
+
+        if (user) {
+            setLogged(true);
+            setVisibleLogin(false);
+            setVisibleRegister(false);
+        } else {
+            alert("usuario invalido");
+        }
+    };
+
+    const onRegister = (information) => {
+        userRegister(information);
+
+        if (user) {
+            setLogged(true);
+            setVisibleLogin(false);
+            setVisibleRegister(false);
+        } else {
+            alert("error al crear usuario");
+        }
+    }
+
+    const onForbiden = <Navigate to="/"/>;
     const onLoginCancel = () => {
         setVisibleLogin(false);
         setVisibleRegister(false);
     };
 
-    const onLogout = () => setLogged(false);
+    const onLogout = () => {
+        userLogout();
+        setLogged(false);
+    };
 
     return (
         <div className="App">
@@ -56,22 +83,24 @@ function App() {
                     requestRegisterRestaurant={showRegisterRestaurant}
                     requestLogout={onLogout}
                 >
-                    <Routes>
-                        <Route path="/" element={<RestaurantsPage/>}/>
-                        <Route path="/restaurant" element={<ProductsPage/>}/>
-                        <Route path="/location" element={<LocationPage/>}/>
-                        <Route path="/cart" element={<CartPage/>}/>
-                        <Route path="/tickets" element={<TicketsPage/>}/>
-                        <Route path="/notifications" element={<NotificationsPage/>}/>
-                        <Route path="/chat/:id" element={<ChatPage/>}/>
-                        <Route path="/config" element={<ConfigPage/>}/>
-                        <Route path="/help" element={<HelpPage/>}/>
-                    </Routes>
+                    <UserContext.Provider value={user}>
+                        <Routes>
+                            <Route path="/" element={<RestaurantsPage/>}/>
+                            <Route path="/restaurant" element={<ProductsPage/>} />
+                            <Route path="/location" element={user ? <LocationPage/> : onForbiden}/>
+                            <Route path="/cart" element={<CartPage/>}/>
+                            <Route path="/tickets" element={user ? <TicketsPage/> : onForbiden}/>
+                            <Route path="/notifications" element={user ? <NotificationsPage/> : onForbiden}/>
+                            <Route path="/chat/:id" element={user ? <ChatPage/> : onForbiden}/>
+                            <Route path="/config" element={user ? <ConfigPage/> : onForbiden}/>
+                            <Route path="/help" element={user ? <HelpPage/> : onForbiden}/>
+                        </Routes>
+                    </UserContext.Provider>
                 </Layout>
             </BrowserRouter>
 
             <LoginForm visible={visibleLogin} onLogin={onLogin} onCancel={onLoginCancel}/>
-            <RegisterForm restaurant={restaurantRegister} visible={visibleRegister} onRegister={onLogin} onCancel={onLoginCancel}/>
+            <RegisterForm restaurant={restaurantRegister} visible={visibleRegister} onRegister={onRegister} onCancel={onLoginCancel}/>
         </div>
     );
 }
