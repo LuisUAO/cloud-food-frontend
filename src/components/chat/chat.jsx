@@ -1,6 +1,6 @@
 import React from 'react';
 
-function NotificationsMessage({ itself, children }) {
+function ChatMessage({ itself, children }) {
   const contentComponent = () =>
     <div class="level-item">
       <div class="notification is-info">
@@ -24,13 +24,13 @@ function NotificationsMessage({ itself, children }) {
   )
 }
 
-function NotificationsChat({ token }) {
+function ChatMessages({ token }) {
   return (
     <div class="box">
-      <NotificationsMessage itself>Puto el que lo lea</NotificationsMessage>
-      <NotificationsMessage>The Game</NotificationsMessage>
+      <ChatMessage itself>Puto el que lo lea</ChatMessage>
+      <ChatMessage>The Game</ChatMessage>
     </div>
   );
 }
 
-export default NotificationsChat;
+export default ChatMessages;

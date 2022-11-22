@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-export function ProductsNavigator() {
+export function ProductsNavigator({requestAdd}) {
     return (
         <nav class="level">
 
@@ -50,7 +51,12 @@ export function ProductsNavigator() {
                         </div>
                     </div>
                 </div>
-
+                <div class="level-item">
+                    <button onClick={requestAdd} className="button is-success">Agregar</button>
+                </div>
+                <div class="level-item">
+                    <Link to="/chat/10" className="button is-info">Chatear</Link>
+                </div>
                 <div class="level-item">
                     <h1 class="subtitle">Burger Stack</h1>
                 </div>

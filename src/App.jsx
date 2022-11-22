@@ -12,6 +12,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { LoginForm } from './components/common/login';
 import { RegisterForm } from './components/common/register';
 import { useState } from 'react';
+import { ChatPage } from './pages/chat';
 
 function App() {
     //TODO: LLEVAR EL LOGGED A UN REDUCER
@@ -62,7 +63,7 @@ function App() {
                         <Route path="/cart" element={<CartPage/>}/>
                         <Route path="/tickets" element={<TicketsPage/>}/>
                         <Route path="/notifications" element={<NotificationsPage/>}/>
-                        <Route path="/notifications/:id" element={<NotificationsChatPage/>}/>
+                        <Route path="/chat/:id" element={<ChatPage/>}/>
                         <Route path="/config" element={<ConfigPage/>}/>
                         <Route path="/help" element={<HelpPage/>}/>
                     </Routes>

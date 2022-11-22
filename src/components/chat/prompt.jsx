@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-function NotificationsPrompt({ onSend }) {
+function ChatPrompt({ onSend }) {
   const [message, setMessage] = useState("");
   const cbMessage = (e) => setMessage(e.target.value);
   const cbSend = (e) => onSend(message);
@@ -26,4 +26,4 @@ function NotificationsPrompt({ onSend }) {
   );
 }
 
-export default NotificationsPrompt;
+export default ChatPrompt;
