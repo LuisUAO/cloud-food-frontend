@@ -38,7 +38,7 @@ export function useUser() {
     
     fetch('http://localhost:4000/api/auth/new', options)
       .then(response => response.json())
-      .then(response => console.log(response))
+      .then(response => setUser(response))
       .catch(err => console.error(err));
   }
 
