@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { createContext, useState } from "react";
+export const UserContext = createContext();
 
 // ----------------
 // Hooks de Usuario
@@ -27,8 +28,10 @@ export function useUser() {
       name: information.name,
     };
 
-    if (information.restaurant)
+    if (information.restaurant) {
       body.restaurant = information.restaurantName;
+      body.description = information.restaurantDesc;
+    }
 
     const options = {
       method: 'POST',

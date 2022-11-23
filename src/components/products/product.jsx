@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Product({onClick}) {
+export function Product({name, price, onClick}) {
     return (
         <a onClick={onClick}>
             <div class="card">
@@ -15,8 +15,8 @@ export function Product({onClick}) {
                 <div class="card-content">
                     <div class="media">
                         <div class="media-content">
-                            <p class="title is-4">Hamburgesa</p>
-                            <p class="title is-6">$ 18 000</p>
+                            <p class="title is-4">{ name }</p>
+                            <p class="title is-6">$ { price }</p>
                         </div>
                     </div>
                 </div>

@@ -1,17 +1,17 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-export function Restaurant() {
-    const activeCB = (data) => 
-        data.isActive ? "is-active" : false;
+export function Restaurant({ id, name, description }) {
+    const activeCB = (nav) => 
+        nav.isActive ? "is-active" : false;
 
     return (
-        <NavLink to="/restaurant" className={activeCB}>
+        <NavLink to={`/restaurant/${id}`} className={activeCB}>
             <div class="card">
 
                 <div class="card-image">
                     <figure class="image is-5by3">
-                        <img src="https://media-cdn.tripadvisor.com/media/photo-o/0d/bc/96/67/borgo-burger.jpg"
+                        <img src="https://st.depositphotos.com/3470617/4920/v/600/depositphotos_49202481-stock-illustration-fast-food.jpg"
                             alt="Restaurant Image" />
                     </figure>
                 </div>
@@ -20,13 +20,13 @@ export function Restaurant() {
                     <div class="media">
                         <div class="media-left">
                             <figure class="image is-48x48">
-                                <img src="https://images.rappi.com/restaurants_logo/g-1607543024380.jpg"
+                                <img src="https://png.pngtree.com/png-clipart/20220719/original/pngtree-food-logo-png-image_8366750.png"
                                     alt="Placeholder image" />
                             </figure>
                         </div>
                         <div class="media-content">
-                            <p class="title is-4">Burger Stack</p>
-                            <p class="subtitle is-6">Hamburgesas</p>
+                            <p class="title is-4">{ name }</p>
+                            <p class="subtitle is-6">{ description }</p>
                         </div>
                     </div>
                 </div>

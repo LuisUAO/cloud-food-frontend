@@ -1,10 +1,10 @@
 import React from 'react';
 
-export function Grid(props) {
+export function Grid({ children }) {
     return (
         <div class="columns is-multiline">
             {
-                props.children.map((child, idx) => 
+                children && children.map((child, idx) => 
                     <div class="column is-4">
                         {child}
                     </div>

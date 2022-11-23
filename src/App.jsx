@@ -13,10 +13,7 @@ import { LoginForm } from './components/common/login';
 import { RegisterForm } from './components/common/register';
 import { useState } from 'react';
 import { ChatPage } from './pages/chat';
-import { useUser } from './hooks/user';
-import { createContext } from 'react';
-// Context del Usuario
-const UserContext = createContext();
+import { UserContext, useUser } from './hooks/user';
 
 function App() {
     let [logged, setLogged] = useState(false);

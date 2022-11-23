@@ -8,6 +8,7 @@ export function RegisterForm({ visible, restaurant, onRegister, onCancel }) {
     let [second, setSecond] = useState("");
     // Restaurante
     let [restaurantName, setRestaurantName] = useState("");
+    let [restaurantDesc, setRestaurantDesc] = useState("");
 
     const cbOnRegister = () => {
         onRegister({
@@ -16,7 +17,8 @@ export function RegisterForm({ visible, restaurant, onRegister, onCancel }) {
             name: name + " " + second,
             // Informacion del Restaurante
             restaurant,
-            restaurantName
+            restaurantName,
+            restaurantDesc
         });
     };
 
@@ -88,10 +90,18 @@ export function RegisterForm({ visible, restaurant, onRegister, onCancel }) {
                                 <div class="field">
                                     <label class="label">Nombre Restaurante</label>
                                     <div class="control">
-                                        <input class="input" type="text" placeholder="Celular" value={restaurantName} onChange={(e) => setRestaurantName(e.target.value)}/>
+                                        <input class="input" type="text" placeholder="Nombre" value={restaurantName} onChange={(e) => setRestaurantName(e.target.value)}/>
                                     </div>
                                     <p class="help">Ingrese el nombre de su restaurante</p>
                                 </div>
+
+                                <div class="field">
+                                    <label class="label">Descripcion Restaurante</label>
+                                    <div class="control">
+                                        <input class="input" type="text" placeholder="Descripción" value={restaurantDesc} onChange={(e) => setRestaurantDesc(e.target.value)}/>
+                                    </div>
+                                    <p class="help">Ingrese el nombre de su restaurante</p>
+                                </div>                                
 
                                 <div class="field">
                                     <label class="label">Imagen Restaurante</label>
