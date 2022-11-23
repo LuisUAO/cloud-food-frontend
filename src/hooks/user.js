@@ -16,9 +16,9 @@ export function useUser() {
     };
     
     fetch('http://localhost:4000/api/auth', options)
+      .catch(err => console.error(err))
       .then(response => response.json())
-      .then(response => setUser(response))
-      .catch(err => console.error(err));
+      .then(response => setUser(response));
   }
 
   const userRegister = (information) => {
@@ -40,9 +40,9 @@ export function useUser() {
     };
     
     fetch('http://localhost:4000/api/auth/new', options)
+      .catch(err => console.error(err))
       .then(response => response.json())
-      .then(response => setUser(response))
-      .catch(err => console.error(err));
+      .then(response => setUser(response));
   }
 
   const userLogout = () => {

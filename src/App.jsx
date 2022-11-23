@@ -14,6 +14,7 @@ import { RegisterForm } from './components/common/register';
 import { useState } from 'react';
 import { ChatPage } from './pages/chat';
 import { UserContext, useUser } from './hooks/user';
+import { useEffect } from 'react';
 
 function App() {
     let [logged, setLogged] = useState(false);
@@ -35,28 +36,22 @@ function App() {
         setVisibleRegister(true);
     }
 
-    const onLogin = (email, password) => {
-        userLogin(email, password);
-
-        if (user) {
+    useEffect(() => {
+        if (user && user.ok) {
             setLogged(true);
             setVisibleLogin(false);
             setVisibleRegister(false);
-        } else {
+        } else if (user && !user.ok) {
             alert("usuario invalido");
         }
+    }, [user]);
+
+    const onLogin = (email, password) => {
+        userLogin(email, password);
     };
 
     const onRegister = (information) => {
         userRegister(information);
-
-        if (user) {
-            setLogged(true);
-            setVisibleLogin(false);
-            setVisibleRegister(false);
-        } else {
-            alert("error al crear usuario");
-        }
     }
 
     const onForbiden = <Navigate to="/"/>;
@@ -83,7 +78,7 @@ function App() {
                     <UserContext.Provider value={user}>
                         <Routes>
                             <Route path="/" element={<RestaurantsPage/>}/>
-                            <Route path="/restaurant" element={<ProductsPage/>} />
+                            <Route path="/restaurant/:id" element={<ProductsPage/>} />
                             <Route path="/location" element={user ? <LocationPage/> : onForbiden}/>
                             <Route path="/cart" element={<CartPage/>}/>
                             <Route path="/tickets" element={user ? <TicketsPage/> : onForbiden}/>

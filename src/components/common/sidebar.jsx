@@ -7,7 +7,7 @@ export function Sidebar({ logged, requestLogin, requestRegister, requestRegister
     const activeCB = (data) =>
         data.isActive ? "is-active" : false;
     const activeRestaurantCB = (data) => {
-        let check = ['/', '/restaurant'].includes(pathname);
+        let check = pathname == "/" || pathname.includes("/restaurant");
         return check ? "is-active" : false;
     }
 

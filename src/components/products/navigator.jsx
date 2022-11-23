@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../hooks/user';
 
-export function ProductsNavigator({requestAdd}) {
+export function ProductsNavigator({ name, admin, requestAdd }) {
+    let user = useContext(UserContext);
+
     return (
         <nav class="level">
 
@@ -51,14 +54,41 @@ export function ProductsNavigator({requestAdd}) {
                         </div>
                     </div>
                 </div>
-                <div class="level-item">
-                    <button onClick={requestAdd} className="button is-success">Agregar</button>
+                <div className="level-item">
+                    <Link to="/" class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                        <span>Volver</span>
+                        <span class="icon is-small">
+                            <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        </span>
+                    </Link>
                 </div>
+                {
+                    admin ?
+                        <>
+                            <div class="level-item">
+                                <button onClick={requestAdd} className="button is-success">
+                                    <span class="icon-text">
+                                        <span class="icon">
+                                            <i class="fas fa-plus"></i>
+                                        </span>
+                                        <span>Agregar</span>
+                                    </span></button>
+                            </div>
+                            <div class="level-item">
+                                <Link to="/chat/10" className="button is-info">
+                                    <span class="icon-text">
+                                        <span class="icon">
+                                            <i class="fas fa-message"></i>
+                                        </span>
+                                        <span>Chatear</span>
+                                    </span></Link>
+                            </div>
+                        </>
+                        :
+                        <></>
+                }
                 <div class="level-item">
-                    <Link to="/chat/10" className="button is-info">Chatear</Link>
-                </div>
-                <div class="level-item">
-                    <h1 class="subtitle">Burger Stack</h1>
+                    <h1 class="subtitle">{name}</h1>
                 </div>
             </div>
 
@@ -81,7 +111,6 @@ export function ProductsNavigator({requestAdd}) {
                     </div>
                 </div>
             </div>
-
         </nav>
     );
 }

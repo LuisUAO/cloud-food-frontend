@@ -32,7 +32,7 @@ export function useRestaurants(token) {
 export function useProducts(token, restaurant) {
   let [products, setProducts] = useState();
 
-  const productsReload = () => {
+  const productsReload = async () => {
     const options = {
       method: 'GET',
       headers: {
@@ -48,47 +48,41 @@ export function useProducts(token, restaurant) {
   }
 
   // Crear Producto
-  const productsCreate = (data) => {
+  const productsCreate = async (data) => {
     const options = {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
         'x-token': token
       },
-      body: data
+      body: JSON.stringify(data)
     };
     
     fetch(`http://localhost:4000/api/producto/${restaurant}`, options)
       .then(response => response.json())
-      .then(response => console.log(response))
+      .then(response => productsReload())
       .catch(err => console.error(err));
-
-    // Volver a Cargar los Items
-    productsReload();
   }
 
   // Actualizar Producto
-  const productsUpdate = (id, data) => {
+  const productsUpdate = async (id, data) => {
     const options = {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
         'x-token': token
       },
-      body: data
+      body: JSON.stringify(data)
     };
     
     fetch(`http://localhost:4000/api/producto/${restaurant}/${id}`, options)
       .then(response => response.json())
-      .then(response => console.log(response))
+      .then(response => productsReload())
       .catch(err => console.error(err));
-
-    // Volver a Cargar los Items
-    productsReload();
   }
 
   // Remover Producto
-  const productsRemove = (id) => {
+  const productsRemove = async (id) => {
     const options = {
       method: 'DELETE',
       headers: {
@@ -99,11 +93,8 @@ export function useProducts(token, restaurant) {
     
     fetch(`http://localhost:4000/api/producto/${restaurant}/${id}`, options)
       .then(response => response.json())
-      .then(response => console.log(response))
+      .then(response => productsReload())
       .catch(err => console.error(err));
-
-    // Volver a Cargar los Items
-    productsReload();
   }
 
   return [products, productsReload, productsCreate, productsUpdate, productsRemove];

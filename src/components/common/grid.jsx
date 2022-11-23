@@ -5,7 +5,7 @@ export function Grid({ children }) {
         <div class="columns is-multiline">
             {
                 children && children.map((child, idx) => 
-                    <div class="column is-4">
+                    <div key={idx} class="column is-4">
                         {child}
                     </div>
                 )
