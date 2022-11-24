@@ -4,6 +4,27 @@ import { useState } from "react";
 // HOOK DE RESTAURANTES
 // --------------------
 
+export function useRestaurant(id, token) {
+  let [restaurant, setRestaurant] = useState();
+
+  const restaurantReload = async () => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'x-token': token
+      }
+    };
+    
+    return fetch(`http://localhost:4000/api/restaurante/${id}`, options)
+      .then(response => response.json())
+      .then(response => setRestaurant(response))
+      .catch(err => console.error(err));
+  };
+
+  return [restaurant, restaurantReload];
+}
+
 export function useRestaurants(token) {
   let [restaurants, setRestaurants] = useState();
 

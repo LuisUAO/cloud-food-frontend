@@ -69,7 +69,8 @@ export function ProductsPage() {
     return (
         <>
             <ProductsNavigator 
-                requestAdd={() => onRequestEdit(false)} 
+                requestAdd={() => onRequestEdit(false)}
+                id={id}
                 admin={admin}
                 name={products ? products.restaurante.nombre : "Invalido"}
             />

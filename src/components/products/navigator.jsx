@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../hooks/user';
 
-export function ProductsNavigator({ name, admin, requestAdd }) {
+export function ProductsNavigator({ id, name, admin, requestAdd }) {
     let user = useContext(UserContext);
 
     return (
@@ -74,19 +74,26 @@ export function ProductsNavigator({ name, admin, requestAdd }) {
                                         <span>Agregar</span>
                                     </span></button>
                             </div>
-                            <div class="level-item">
-                                <Link to="/chat/10" className="button is-info">
-                                    <span class="icon-text">
-                                        <span class="icon">
-                                            <i class="fas fa-message"></i>
-                                        </span>
-                                        <span>Chatear</span>
-                                    </span></Link>
-                            </div>
+
                         </>
                         :
                         <></>
                 }
+                {
+                    user && user.ok ?
+                    <div class="level-item">
+                        <Link to={`/chat/${id}`} className="button is-info">
+                            <span class="icon-text">
+                                <span class="icon">
+                                    <i class="fas fa-message"></i>
+                                </span>
+                                <span>Chatear</span>
+                            </span></Link>
+                    </div>
+                    :
+                    <></>
+                }
+
                 <div class="level-item">
                     <h1 class="subtitle">{name}</h1>
                 </div>
