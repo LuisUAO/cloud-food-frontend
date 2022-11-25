@@ -11,7 +11,7 @@ export function RestaurantsPage() {
     let user = useContext(UserContext);
     let [restaurants, restaurantsReload] = useRestaurants(user.token);
     // Cargar Restaurantes (Una Sola Vez)
-    useEffect(() => restaurantsReload(), []);
+    useEffect(() => restaurantsReload(), [user]);
 
     return (
         <>
