@@ -16,7 +16,7 @@ export function ProductsDetail({visible, onAccept, onClose}) {
                 <section class="modal-card-body">
                     <div class="columns">
                         <div class="column is-4">
-                            <Product />
+                            <Product name={"No Alcanzamos"} price={1000}/>
                         </div>
                         <div class="column is-8">
                             <ProductsDetailOption />
